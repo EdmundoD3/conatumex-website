@@ -1,0 +1,22 @@
+:root {
+    --font-color: #5d737eff;
+    --celeste: #c0fdfbff;
+    --aero-blue: #daffefff;
+    --background: #fcfffdff;
+    --maximum-blue-green: #5dc1b9ff;
+    --title-color: #256D85;
+}
+
+.size-title {
+    text-align: center;
+    color: var(--title-color);
+}
+
+.lista-valores {
+    margin: 0 auto;
+    padding: 0;
+}
+.lista-valores li {
+    list-style: none;
+    text-align: center;
+}
