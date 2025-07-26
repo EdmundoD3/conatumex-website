@@ -1,22 +1,129 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Linktree Clone</title>
-    <link rel="stylesheet" href="styles.css"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Conatumex | Links</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            /* Foto de Kaique Rocha: https://www.pexels.com/es-es/foto/puente-colgante-negro-rodeado-de-arboles-del-bosque-verde-775201/ */
+            background: url('../../img/background/pexels-hikaique-775201.webp') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('../../img/background/pexels-hikaique-775201.webp') no-repeat center center fixed;
+            background-size: cover;
+            filter: blur(12px);
+            z-index: -1;
+            animation: zoomIn 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes zoomIn {
+            0% {
+                /* transform: scale(1); */
+                filter: blur(8px);
+            }
+
+            100% {
+                /* transform: scale(1.05); */
+                filter: blur(12px);
+            }
+        }
+
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 12px;
+            background-color: #fff;
+            margin: 0 auto 20px;
+            background-image: url('../../img/logo/CONATUMEX_Chico.webp');
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        p {
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: #d1d1d1;
+        }
+
+        .link {
+            display: block;
+            background-color: #a3d977;
+            color: #1a1a1a;
+            text-decoration: none;
+            padding: 14px;
+            margin-bottom: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+        }
+
+        .link:hover {
+            transform: scale(1.05);
+            background-color: #c6f090;
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #ccc;
+        }
+    </style>
 </head>
+
 <body>
-
-    <header>
-        <!-- <div class="share-button">
-            <svg width="16" height="16" viewBox="0 0 16 16" enable-background="new 0 0 24 24" class="sc-gKsewC iPWGYb"><path fill-rule="evenodd" clip-rule="evenodd" d="M10.6464 3.85347L11 4.20702L11.7071 3.49992L11.3536 3.14636L8.35355 0.146362H7.64645L4.64645 3.14636L4.29289 3.49992L5 4.20702L5.35355 3.85347L7.5 1.70702V9.49992V9.99992H8.5V9.49992V1.70702L10.6464 3.85347ZM1 5.49994L1.5 4.99994H4V5.99994H2V14.9999H14V5.99994H12V4.99994H14.5L15 5.49994V15.4999L14.5 15.9999H1.5L1 15.4999V5.49994Z" fill="currentColor"></path></svg>
-        </div> -->
-    </header>
     <div class="container">
-        <h1>En construccion</h1>
+        <div class="logo"></div>
+        <h1>Conatumex</h1>
+        <p>Genessis del Norte</p>
+
+        <a class="link" href="https://wa.me/528128927810" target="_blank">WhatsApp</a>
+        <a class="link" href="https://www.facebook.com/genessis.conatumex/" target="_blank">Facebook</a>
+        <a class="link" href="https://listado.mercadolibre.com.mx/_CustId_309975486" target="_blank">Tienda en Mercado
+            Libre</a>
+
+        <div class="info">
+            <p>📍 Enrique Rangel Meléndez 1830<br />Valle de San Martin, Monterrey, N.L.</p>
+            <p>📞 Tel: 8391 7589</p>
+        </div>
     </div>
-
-<script src="app.js"></script>
-
 </body>
+
 </html>
