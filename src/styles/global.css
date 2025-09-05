@@ -5,20 +5,19 @@
   --text-white: #fefefe;
   --title: #2c3e50;
   --text: #6c757d;
+  --link:var(--celestial-blue);
+  --background: #f8f9fa;
+
 
   --celestial-blue: #4b97c0ff;
   --pistachio: #b5d984ff;
   --tiffany-blue: #82d1c5ff;
   --nyanza: #d0f4deff;
+
   --aquamarine: #98f5e1ff;
   --celeste: #b2f7efff;
   --mint-cream: #eff7f6ff;
   --eerie-black: #17181cff;
-
-  
-  --link:var(--celestial-blue);
-  --background: #f8f9fa;
-  
 }
 
 * {
@@ -50,7 +49,11 @@ h3 {
 
 a {
   text-decoration: none;
-  color: var(--text-white);
+  color: var(--link);
+}
+
+a:hover{
+  color: var(--pistachio);
 }
 
 p{

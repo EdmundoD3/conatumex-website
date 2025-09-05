@@ -1,31 +1,49 @@
 ---
-
+type TLink = {
+  name: string;
+  url: string;
+};
+const links: TLink[] = [
+  { name: "Home", url: "/" },
+  { name: "Nosotros", url: "/nosotros" },
+  { name: "Productos", url: "/productos" },
+  { name: "Contacto", url: "/contacto" },
+];
 ---
 
 <header class="main-header">
   <div class="container">
     <a href="/" class="logo">
-      <img src="assets/img/CONATUMEX (Chico).webp" alt="Logo Conatumex" class="logo-img">
+      <img
+        src="assets/img/CONATUMEX (Chico).webp"
+        alt="Logo Conatumex"
+        class="logo-img"
+      />
     </a>
     <nav class="nav" id="nav">
       <ul class="nav-list">
-        <li><a href="/" class="nav-link">Home</a></li>
-        <li><a href="/nosotros" class="nav-link">Nosotros</a></li>
-        <li><a href="/productos" class="nav-link">Productos</a></li>
-        <li><a href="/contacto" class="nav-link">Contacto</a></li>
+        {
+          links.map((link) => (
+            <li>
+              <a href={link.url} class="nav-link">
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </nav>
     <button class="menu-toggle" id="menu-toggle">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span class="menu-bar-1"></span>
+      <span class="menu-bar-2"></span>
+      <span class="menu-bar-3"></span>
     </button>
   </div>
 </header>
 
 <style>
   .main-header {
-    background-color: rgba(0, 0, 0, 0.8);
+    background-color: rgba(0, 0, 0, 0.85);
     color: var(--text-white);
     padding: 20px 0;
     position: fixed;
@@ -52,7 +70,7 @@
     color: var(--text-white);
     font-weight: bold;
     text-decoration: none;
-    position: relative; 
+    position: relative;
     transition: color 0.3s ease;
   }
 
@@ -63,15 +81,15 @@
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--pistachio); 
-    transition: width 0.3s ease; 
+    background-color: var(--pistachio);
+    transition: width 0.3s ease;
   }
 
   .nav-link:hover {
     color: var(--pistachio);
   }
   .nav-link:hover::after {
-    width: 100%; 
+    width: 100%;
   }
 
   .menu-toggle {
@@ -92,12 +110,24 @@
     transition: transform 0.3s;
   }
 
+      /* Estilos para la animación de la X */
+    .menu-toggle.active .menu-bar-1 {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .menu-toggle.active .menu-bar-2 {
+      opacity: 0;
+    }
+    .menu-toggle.active .menu-bar-3 {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+
   @media (max-width: 768px) {
     .nav {
       display: none;
       width: 100%;
       text-align: center;
-      background-color: rgba(0, 0, 0, 0.9);
+      background-color: rgba(0, 0, 0, 0.8);
       position: absolute;
       top: 100%;
       left: 0;
@@ -113,21 +143,22 @@
     .menu-toggle {
       display: flex;
     }
-    .logo-img{
+    .logo-img {
       width: 50px;
     }
   }
 </style>
 
 <script>
-  document.addEventListener("DOMContentLoaded", () => {
+  const setupMenu = () => {
     const menuToggle = document.getElementById("menu-toggle");
     const nav = document.getElementById("nav");
+    
 
-    // Verificar que los elementos existen antes de usarlos
     if (menuToggle && nav) {
       menuToggle.addEventListener("click", () => {
         nav.classList.toggle("active");
+        menuToggle.classList.toggle("active");
       });
 
       const navLinks = nav.querySelectorAll(".nav-link");
@@ -139,5 +170,11 @@
         });
       });
     }
-  });
+  };
+
+  // 1. Ejecutar al cargar la página por primera vez.
+  document.addEventListener("DOMContentLoaded", setupMenu);
+
+  // 2. Ejecutar cada vez que Astro cambia de página (transición de vista).
+  document.addEventListener("astro:after-swap", setupMenu);
 </script>
