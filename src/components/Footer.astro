@@ -1,0 +1,64 @@
+<footer class="main-footer">
+	<div class="container">
+		<div class="footer-content">
+			<p>&copy; 2025 Génesis del Norte, Conatumex. Todos los derechos reservados.</p>
+			<div class="social-media">
+				<p>Síguenos en redes:</p>
+				<div class="social-icons">
+					<a href="https://es-la.facebook.com/genessis.conatumex" target="_blank" aria-label="Facebook">
+						<i class="fa-brands fa-facebook"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<style>
+	.main-footer {
+		background-color: #000;
+		text-align: center;
+		padding: 20px 0;
+	}
+	.footer-content {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 15px;
+	}
+	.footer-content p {
+		color: var(--text-white);
+	}
+	.social-media {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 5px;
+	}
+	.social-icons {
+		display: flex;
+		gap: 15px;
+	}
+	.social-icons a {
+		color: #1877F2;
+		transition: color 0.3s ease;
+	}
+	.social-icons a:hover {
+		color: var(--pistachio);
+	}
+	.social-icons svg {
+		width: 24px;
+		height: 24px;
+	}
+
+	@media (min-width: 769px) {
+		.footer-content {
+			flex-direction: row;
+			justify-content: space-between;
+		}
+		.social-media {
+			flex-direction: row;
+			gap: 10px;
+		}
+	}
+</style>

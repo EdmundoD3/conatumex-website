@@ -1,0 +1,247 @@
+---
+import Layout from "../components/layout/Layout.astro";
+---
+
+<Layout title="Nosotros">
+  <section class="about-us-section">
+    <div class="container">
+      <div class="about-us-header">
+        <h2>Nuestra Misión y Valores</h2>
+        <p>
+          Conoce la esencia que nos impulsa a crecer y a ofrecer lo mejor para
+          tu bienestar.
+        </p>
+      </div>
+      <div class="about-us-content">
+        <div class="about-us-card mission">
+          <div class="card-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2c3e50"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <h3>Misión</h3>
+          <p>
+            Contribuir a la mejora y el desarrollo del servicio al cliente en la
+            venta de productos naturistas en Monterrey.
+          </p>
+        </div>
+        <div class="about-us-card vision">
+          <div class="card-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2c3e50"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M12 2a10 10 0 0 1 10 10"></path>
+              <path d="M12 22a10 10 0 0 0 10-10"></path>
+              <path d="M12 2a10 10 0 0 0-10 10"></path>
+              <path d="M12 22a10 10 0 0 1-10-10"></path>
+            </svg>
+          </div>
+          <h3>Visión</h3>
+          <p>
+            Obtener reconocimiento a nivel empresarial y social dentro de la
+            industria en la venta de productos naturistas.
+          </p>
+        </div>
+        <div class="about-us-card values">
+          <div class="card-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2c3e50"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-8.64"></path>
+              <path d="M22 4L12 14.01l-3-3"></path>
+            </svg>
+          </div>
+          <h3>Nuestros Valores</h3>
+          <ul>
+            <li>
+              <p><span>Calidad:</span> En cada uno de nuestros productos.</p>
+            </li>
+            <li>
+              <p>
+                <span>Compromiso:</span> Con nuestros clientes y el medio ambiente.
+              </p>
+            </li>
+            <li>
+              <p><span>Honestidad:</span> En todas nuestras operaciones.</p>
+            </li>
+            <li><p><span>Entregas en tiempo y forma.</span></p></li>
+          </ul>
+        </div>
+        <div class="about-us-card products">
+          <div class="card-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="48"
+              height="48"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="#2c3e50"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path
+                d="M12 2L9.19 8.63L2 9.54L7.56 14.1L5.8 21L12 17.27L18.2 21L16.44 14.1L22 9.54L14.81 8.63L12 2Z"
+              ></path>
+            </svg>
+          </div>
+          <h3>Nuestros Productos</h3>
+          <p>
+            Todos nuestros productos son cuidadosamente seleccionados para asegurar la máxima calidad y pureza. Nuestro compromiso es contigo y tu bienestar.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .about-us-section {
+    background-color: var(--background);
+    padding: 80px 0;
+    margin-top: 50px;
+    text-align: center;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+  .about-us-header h2 {
+    font-size: 2.5rem;
+    color: var(--title);
+    margin-bottom: 10px;
+  }
+  .about-us-header p {
+    font-size: 1.1rem;
+    color: var(--text);
+    margin-bottom: 40px;
+  }
+  .about-us-content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+  }
+  .about-us-card {
+    background-color: white;
+    padding: 40px 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .about-us-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  .card-icon {
+    background-color: #e2f4ea;
+    padding: 15px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  .card-icon svg {
+    stroke: #2c3e50;
+  }
+  .about-us-card h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  .about-us-card p {
+    font-size: 1rem;
+    color: #495057;
+    line-height: 1.6;
+  }
+  .about-us-card ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .about-us-card li {
+    margin-bottom: 10px;
+  }
+  .about-us-card span {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  @media (max-width: 768px) {
+    .about-us-section {
+      padding: 50px 0;
+    }
+
+    .about-us-header h2 {
+      font-size: 2rem;
+    }
+
+    .about-us-header p {
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    .about-us-content {
+      grid-template-columns: 1fr;
+    }
+
+    .about-us-card {
+      padding: 30px 15px;
+    }
+
+    .about-us-card h3 {
+      font-size: 1.5rem;
+    }
+
+    .about-us-card ul {
+      text-align: center;
+    }
+
+    .about-us-card li {
+      text-align: center;
+    }
+  }
+</style>
+
+<style is:global>
+  /* :root {
+        --text-color: #2c3e50;
+        --accent-color: #4CAF50;
+    } */
+  .about-us-section h2,
+  .about-us-section h3 {
+    font-family: "Poppins", sans-serif;
+  }
+</style>
