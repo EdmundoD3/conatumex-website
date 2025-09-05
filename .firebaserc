@@ -1,30 +1,4 @@
 {
-  "hosting": {
-    "public": "dist",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
-        "source": "/contactanos",
-        "destination": "/contacto/index.html"
-      },
-      {
-        "source": "/nosotros",
-        "destination": "/nosotros/index.html"
-      },
-      {
-        "source": "/productos",
-        "destination": "/productos/index.html"
-      },
-      {
-        "source": "**",
-        "destination": "/index.html"
-      }
-    ]
-  },
   "projects": {
     "default": "conatumex-ad03b"
   }
