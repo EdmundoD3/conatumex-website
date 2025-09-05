@@ -1,39 +1,43 @@
 ---
-const title = "¡Bienvenidos a nuestra tienda!"
+const title = "¡Bienvenidos a nuestra tienda!";
 ---
 
 <section class="hero-section">
-			<div class="hero-content">
-				<h1>{title}</h1>
-				<p>En Génesis del Norte, Conatumex, tenemos una amplia experiencia en la comercialización de productos naturistas.</p>
-				<a href="/productos" class="btn">Ver nuetros productos</a>
-			</div>
-		</section>
+  <div class="hero-content">
+    <h1>{title}</h1>
+    <p>
+      En Génesis del Norte, Conatumex, tenemos una amplia experiencia en la
+      comercialización de productos naturistas.
+    </p>
+    <a href="/productos" class="btn">Ver nuetros productos</a>
+  </div>
+</section>
 
 <style>
-	.hero-section {
-		background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../../public/img/icons/hero.jpg');
-		background-size: cover;
-		background-position: center;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-	}
-	.hero-content h1 {
-		font-size: 4em;
-		color: var(--pistachio);
-	}
-	.hero-content p {
-		font-size: 1.2em;
-		max-width: 600px;
-		margin: 0 auto 20px;
-		color: var(--text-white);
-	}
-	@media (max-width: 768px) {
-		.hero-content h1 {
-			font-size: 2.5em;
-		}
-	}
+  .hero-section {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+      url("assets/img/icons/hero.jpg");
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .hero-content h1 {
+    font-size: 4em;
+    color: var(--pistachio);
+  }
+  .hero-content p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 0 auto 20px;
+    color: var(--text-white);
+  }
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2.5em;
+    }
+  }
 </style>
