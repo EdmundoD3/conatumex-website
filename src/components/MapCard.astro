@@ -1,0 +1,160 @@
+---
+const src =
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3592.509141120681!2d-100.37999172395502!3d25.78677197733609!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x866291166ba64e93%3A0x271178a2b9dd149!2sG%C3%A9nesis%20del%20Norte%2C%20Conatumex!5e0!3m2!1ses-419!2smx!4v1757107173841!5m2!1ses-419!2smx";
+
+// Reemplaza con tu screenshot del mapa
+const previewImage = "assets/img/map-preview.jpg";
+---
+
+<div class="map-card">
+  <!-- Imagen de preview -->
+  <div class="map-preview">
+    <img src={previewImage} alt="Mapa de ubicación" />
+    <button class="map-btn">Haz click para ver el mapa</button>
+  </div>
+
+  <!-- Spinner de carga -->
+  <div class="map-loading">
+    <span></span>
+  </div>
+
+  <!-- El iframe empieza vacío -->
+  <iframe
+    data-src={src}
+    width="100%"
+    height="100%"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade"
+  ></iframe>
+</div>
+
+<style>
+  .map-card {
+    position: relative;
+    overflow: hidden;
+    height: 400px;
+    border-radius: 10px;
+    background: #f0f0f0;
+  }
+
+  /* Imagen de preview */
+  .map-preview {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    background: #000;
+    cursor: pointer;
+    z-index: 2;
+  }
+
+  .map-preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+    opacity: 0.8;
+  }
+
+  .map-preview .map-btn {
+    position: absolute;
+    padding: 0.6em 1.2em;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    border: 2px solid #fff;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.3s;
+  }
+
+  .map-preview .map-btn:hover {
+    background: rgba(0, 0, 0, 0.8);
+  }
+
+  /* Iframe oculto hasta cargar */
+  .map-card iframe {
+    border-radius: 10px;
+    height: 100%;
+    width: 100%;
+    border: none;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Spinner */
+  .map-loading {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #f5f5f5;
+    border-radius: 10px;
+    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s;
+  }
+
+  .map-loading span {
+    width: 40px;
+    height: 40px;
+    border: 4px solid #ddd;
+    border-top-color: #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  /* Estado cargado */
+  .map-loaded iframe {
+    opacity: 1;
+  }
+
+  .map-loaded .map-loading {
+    opacity: 0;
+    visibility: hidden;
+  }
+</style>
+
+<script>
+  const setupMenu = () => {
+  const mapCard = document.querySelector(".map-card");
+  if(!mapCard) return;
+  const iframe = mapCard.querySelector("iframe");
+  const preview = mapCard.querySelector(".map-preview");
+  const loading = mapCard.querySelector(".map-loading");
+  if (!iframe || !preview || !loading) return;
+
+  preview.addEventListener("click", () => {
+    // Mostrar spinner
+    (loading as HTMLElement).style.opacity = "1";
+    // Cargar el mapa
+    iframe.src = iframe.dataset.src || "";
+
+    iframe.addEventListener("load", () => {
+      mapCard.classList.add("map-loaded");
+      (loading as HTMLElement).style.opacity = "0";
+      (preview as HTMLElement).style.display = "none"; // Ocultar preview
+    });
+
+    // Si falla, mostrar otra vez la imagen
+    iframe.addEventListener("error", () => { 
+      (loading as HTMLElement).style.opacity = "0";
+      (preview as HTMLElement).style.display = "grid";
+    });
+  });
+};
+document.addEventListener("DOMContentLoaded", setupMenu);
+document.addEventListener("astro:after-swap", setupMenu);
+</script>
