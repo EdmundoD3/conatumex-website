@@ -47,36 +47,13 @@ const MAIN_TITLE = "Conoce nuestro catalogo";
   }
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
     justify-content: center;
     max-width: 1200px;
     margin: 0 auto;
   }
-  .desplegable-info-panel h2 {
-    font-size: 1.5rem;
-    margin-top: 0;
-    margin-bottom: 10px;
-  }
-  .desplegable-info-panel p {
-    font-size: 0.9em;
-    line-height: 1.4;
-    /* Limita la altura del panel para descripciones largas */
-    max-height: 150px;
-    overflow-y: auto;
-    margin-bottom: 20px;
-  }
-  /* Estilos del scrollbar para el panel de info */
-  .desplegable-info-panel p::-webkit-scrollbar {
-    width: 8px;
-  }
-  .desplegable-info-panel p::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-  }
-  .desplegable-info-panel p::-webkit-scrollbar-track {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
+  
   @media (max-width: 768px) {
     .products-section {
       padding: 20px 15px;

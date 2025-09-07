@@ -1,85 +1,95 @@
 ---
 interface Props {
-  id:string;
-	title: string;
-	description: string;
-	imgSrc: string;
-	altText: string;
+  id: string;
+  title: string;
+  description: string;
+  imgSrc: string;
+  altText: string;
 }
 
-const { title, description, imgSrc, altText,id } = Astro.props;
+const { title, description, imgSrc, altText, id } = Astro.props;
 const urlProduct = `/productos/${id}`;
 ---
 
 <div class="desplegable-card">
-    <div class="desplegable-img-container">
-        <img src={imgSrc} alt={altText} />
-        <div class="desplegable-info-panel">
-            <h2>{title}</h2>
-            <p>{description}</p>
-            <!-- <a href="#" class="desplegable-btn">Ver más</a> -->
-        </div>
+  <div class="desplegable-img-container">
+    <img src={imgSrc} alt={altText} />
+    <div class="desplegable-info-panel">
+      <h2>{title}</h2>
+      <p>{description}</p>
+      <a href={urlProduct} class="desplegable-btn">Ver más</a>
     </div>
+  </div>
 </div>
 
 <style>
-    .desplegable-card {
-        width: 350px;
-        margin: 0 auto;
-        border-radius: 50px;
-        overflow: hidden; /* Importante para que el panel se "despliegue" */
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        transition: box-shadow 0.3s ease;
-        background-color: white;
-        border: 5px double #ccc;
-    }
+  .desplegable-card {
+    width: 350px;
+    margin: 0 auto;
+    border-radius: 10px;
+    overflow: hidden; /* Importante para que el panel se "despliegue" */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    background-color: rgba(255, 255, 255, 0.163);
+    /* border: 5px double #ccc; */
+  }
 
-    .desplegable-card:hover {
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
+  .desplegable-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
 
-    .desplegable-img-container {
-        position: relative;
-        overflow: hidden; /* Necesario para contener la imagen y el panel */
-    }
+  .desplegable-img-container {
+    position: relative;
+    overflow: hidden; /* Necesario para contener la imagen y el panel */
+  }
 
-    .desplegable-img-container img {
-        width: 100%;
-        height: 400px; /* Altura fija para las imágenes */
-        object-fit: contain; /* Asegura que la imagen cubra el espacio sin distorsionarse */
-        display: block; /* Elimina espacio extra debajo de la imagen */
-    }
+  .desplegable-img-container img {
+    width: 100%;
+    padding: 2.5rem;
+    height: 400px; /* Altura fija para las imágenes */
+    object-fit: contain; /* Asegura que la imagen cubra el espacio sin distorsionarse */
+    display: block; /* Elimina espacio extra debajo de la imagen */
+  }
 
-    .desplegable-info-panel {
-        position: absolute;
-        bottom: 0; /* Posiciona el panel en la parte inferior del contenedor de imagen */
-        left: 0;
-        width: 100%;
-        height: 100%; /* Altura automática para el contenido */
-        background-color: rgba(44, 62, 80, 0.95); /* Fondo oscuro semitransparente */
-        /* color: white; */
-        padding: 20px;
-        transform: translateY(100%); /* Inicialmente el panel está fuera de vista, hacia abajo */
-        transition: transform 0.4s ease-out; /* Animación de despliegue */
-        box-sizing: border-box; /* Asegura que padding no aumente el ancho */
-        text-align: center;
-    }
+  .desplegable-info-panel {
+    position: absolute;
+    bottom: 0; /* Posiciona el panel en la parte inferior del contenedor de imagen */
+    left: 0;
+    width: 100%;
+    height: 100%; /* Altura automática para el contenido */
+    background-color: rgba(
+      44,
+      62,
+      80,
+      0.95
+    ); /* Fondo oscuro semitransparente */
+    /* color: white; */
+    padding: 2.5rem;
+    transform: translateY(
+      100%
+    ); /* Inicialmente el panel está fuera de vista, hacia abajo */
+    transition: transform 0.4s ease-out; /* Animación de despliegue */
+    box-sizing: border-box; /* Asegura que padding no aumente el ancho */
+    text-align: center;
+  }
 
-    .desplegable-card:hover .desplegable-info-panel {
-        transform: translateY(0); /* Al hacer hover, el panel se mueve a su posición original */
-    }
+  .desplegable-card:hover .desplegable-info-panel {
+    transform: translateY(
+      0
+    ); /* Al hacer hover, el panel se mueve a su posición original */
+  }
 
-    .desplegable-info-panel h2 {
-        margin-top: 0;
-        font-size: 1.3em;
-        margin-bottom: 10px;
-        color: var(--tiffany-blue);
-    }
+  .desplegable-info-panel h2 {
+    margin-top: 0;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: var(--tiffany-blue);
+  }
 
-    .desplegable-info-panel p {
-        font-size: 0.95em;
-        line-height: 1.5;
-        margin-bottom: 20px;
-        color: var(--text-white);
-    }
+  .desplegable-info-panel p {
+    font-size: 0.95em;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    color: var(--text-white);
+  }
 </style>
