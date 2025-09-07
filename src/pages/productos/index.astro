@@ -1,0 +1,105 @@
+---
+import Card from "../../components/Card.astro";
+import CardInfo from "../../components/CardInfo.astro";
+import Layout from "../../components/layout/Layout.astro";
+import products from "../../data/products.json";
+type TProductsData = {
+  title: string;
+  description: string;
+  imgSrc: string;
+  altText: string;
+};
+const MAIN_TITLE = "Conoce nuestro catalogo";
+---
+
+<Layout title={MAIN_TITLE}
+  >
+  <section class="products-section">
+    <h2 class="products-heading">Nuestros productos</h2>
+    <p class="products-subheading">
+      Descubre nuestra línea completa de productos para tu bienestar.
+    </p>
+    <div class="product-grid">
+      {
+        products.map((product, index) => (
+          <Card
+            title={product.title}
+            description={product.description}
+            imgSrc={product.imgSrc}
+            altText={product.altText}
+          />
+        ))
+      }
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .products-section {
+    padding: 80px 20px;
+    text-align: center;
+  }
+  .products-heading {
+    font-size: 2.8rem;
+    color: var(--title);
+    margin-top: 50px;
+    margin-bottom: 10px;
+  }
+  .products-subheading {
+    font-size: 1.2rem;
+    color: var(--text);
+    margin-bottom: 50px;
+  }
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 30px;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .desplegable-info-panel h2 {
+    font-size: 1.5rem;
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  .desplegable-info-panel p {
+    font-size: 0.9em;
+    line-height: 1.4;
+    /* Limita la altura del panel para descripciones largas */
+    max-height: 150px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+  }
+  /* Estilos del scrollbar para el panel de info */
+  .desplegable-info-panel p::-webkit-scrollbar {
+    width: 8px;
+  }
+  .desplegable-info-panel p::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+  }
+  .desplegable-info-panel p::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+  @media (max-width: 768px) {
+    .products-section {
+      padding: 20px 15px;
+    }
+
+    .products-heading {
+      font-size: 2.2rem;
+      padding: 50px 0 20px 0;
+      margin-bottom: 0;
+    }
+
+    .products-subheading {
+      font-size: 1rem;
+      margin-bottom: 30px;
+    }
+
+    .product-grid {
+      gap: 30px;
+    }
+  }
+</style>
