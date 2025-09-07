@@ -3,12 +3,6 @@ import Card from "../../components/Card.astro";
 import CardInfo from "../../components/CardInfo.astro";
 import Layout from "../../components/layout/Layout.astro";
 import products from "../../data/products.json";
-type TProductsData = {
-  title: string;
-  description: string;
-  imgSrc: string;
-  altText: string;
-};
 const MAIN_TITLE = "Conoce nuestro catalogo";
 ---
 
@@ -23,6 +17,7 @@ const MAIN_TITLE = "Conoce nuestro catalogo";
       {
         products.map((product, index) => (
           <Card
+          id={product.id}
             title={product.title}
             description={product.description}
             imgSrc={product.imgSrc}

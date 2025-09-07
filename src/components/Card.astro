@@ -1,12 +1,14 @@
 ---
 interface Props {
+  id:string;
 	title: string;
 	description: string;
 	imgSrc: string;
 	altText: string;
 }
 
-const { title, description, imgSrc, altText } = Astro.props;
+const { title, description, imgSrc, altText,id } = Astro.props;
+const urlProduct = `/productos/${id}`;
 ---
 
 <div class="desplegable-card">
