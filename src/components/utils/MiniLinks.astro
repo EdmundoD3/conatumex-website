@@ -1,0 +1,75 @@
+---
+export interface Props {
+  links: {
+    shop: string | "mercadolibre" | "amazon" | "web" | "whatsapp";
+    url: string;
+  }[];
+}
+
+const { links } = Astro.props;
+---
+
+<div class="mini-card">
+  <div class="icons">
+    {
+      links.map((link) => (
+        <a
+          href={link.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="icon"
+        >
+          {link.shop === "mercadolibre" && (
+            <img src="/assets/img/icons/mercadolibre.svg" alt="Mercado Libre" />
+          )}
+          {link.shop === "whatsapp" && (
+            <img src="/icons/whatsapp.svg" alt="WhatsApp" />
+          )}
+          {link.shop === "amazon" && (
+            <img src="/icons/amazon.svg" alt="Amazon" />
+          )}
+          {link.shop === "web" && <img src="/icons/web.svg" alt="Web" />}
+        </a>
+      ))
+    }
+  </div>
+</div>
+
+<style>
+  .mini-card {
+    display: flex;
+    position: absolute;
+    width: 60px;
+    align-items: center;
+    bottom: 0;
+    left: 4px;
+    justify-content: space-between;
+    background: white;
+    border-radius: 12px;
+    padding: 12px 16px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 8px 0;
+  }
+
+  .mini-card h3 {
+    font-size: 1rem;
+    margin: 0;
+    color: #333;
+    flex: 1;
+  }
+
+  .icons {
+    display: flex;
+    gap: 12px;
+  }
+
+  .icon img {
+    width: 28px;
+    height: 28px;
+    transition: transform 0.2s ease;
+  }
+
+  .icon:hover img {
+    transform: scale(1.1);
+  }
+</style>

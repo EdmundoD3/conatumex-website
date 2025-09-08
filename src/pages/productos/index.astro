@@ -2,27 +2,29 @@
 import Card from "../../components/Card.astro";
 import CardInfo from "../../components/CardInfo.astro";
 import Layout from "../../components/layout/Layout.astro";
+import ProductSimpleCard from "../../components/ProductSimpleCard.astro";
 import products from "../../data/products.json";
 const MAIN_TITLE = "Conoce nuestro catalogo";
 ---
 
-<Layout title={MAIN_TITLE}
-  >
+<Layout title={MAIN_TITLE}>
   <section class="products-section">
     <h2 class="products-heading">Nuestros productos</h2>
     <p class="products-subheading">
       Descubre nuestra línea completa de productos para tu bienestar.
     </p>
     <div class="product-grid">
+      
       {
         products.map((product, index) => (
-          <Card
-          id={product.id}
-            title={product.title}
-            description={product.description}
-            imgSrc={product.imgSrc}
-            altText={product.altText}
-          />
+          <ProductSimpleCard {...product} />
+          // <Card
+          //   id={product.id}
+          //   title={product.title}
+          //   description={product.description}
+          //   imgSrc={product.imgSrc}
+          //   altText={product.altText}
+          // />
         ))
       }
     </div>
@@ -53,7 +55,7 @@ const MAIN_TITLE = "Conoce nuestro catalogo";
     max-width: 1200px;
     margin: 0 auto;
   }
-  
+
   @media (max-width: 768px) {
     .products-section {
       padding: 20px 15px;
