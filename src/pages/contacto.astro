@@ -1,4 +1,5 @@
 ---
+import ContactInfo from "../components/ContactInfo.astro";
 import Layout from "../components/layout/Layout.astro";
 import MapCard from "../components/MapCard.astro";
 ---
@@ -15,79 +16,8 @@ import MapCard from "../components/MapCard.astro";
   </section>
   <section class="contact-section">
     <div class="container">
-      <div class="contact-info-card">
-        <div class="purchase-options">
-          <h2>Sucursal en Monterrey</h2>
-          <ul>
-            <li>
-              <span class="option-icon"
-                ><i class="fa-solid fa-location-dot"></i></span
-              >
-              <p>
-                Enrique Rangel Meléndez #1830 Planta alta, Col. Valle de San
-                Martín, 64208 Monterrey, N.L.
-              </p>
-            </li>
-            <li>
-              <span class="option-icon"><i class="fa-solid fa-phone"></i></span>
-              <p>Teléfono: (81) 8391-7589</p>
-            </li>
-            <li>
-              <span class="option-icon"
-                ><i class="fa-regular fa-clock"></i></span
-              >
-              <p>Horario: Lunes a Viernes de 9:00 a.m. a 2:00 p.m.</p>
-            </li>
-          </ul>
-        </div>
-        <div class="purchase-options">
-          <h2>¿Dónde comprar?</h2>
-          <ul>
-            <li>
-              <span class="option-icon"
-                ><i class="fa-brands fa-facebook"></i></span
-              >
-              <p>
-                Realiza tu pedido por <a
-                  href="https://es-la.facebook.com/genessis.conatumex"
-                  target="_blank"
-                  rel="noopener">Facebook.</a>
-              </p>
-            </li>
-            <li>
-              <span class="option-icon"
-                ><i class="fa-brands fa-whatsapp"></i></span
-              >
-              <p>
-                Realiza tu pedido por <a
-                  href="https://wa.me/528128927810"
-                  target="_blank"
-                  rel="noopener">Whatsapp.</a>
-              </p>
-            </li>
-            <li>
-              <span class="option-icon"><i class="fa-solid fa-store"></i></span>
-              <p>
-                Realiza tu pedido por <a
-                  href="https://listado.mercadolibre.com.mx/_CustId_309975486?item_id=MLM1391632481&category_id=MLM1275&seller_id=309975486&client=recoview-selleritems&recos_listing=true#origin=vip&component=sellerData&typeSeller=classic"
-                  target="_blank"
-                  rel="noopener">Mercado Libre.</a>
-              </p>
-            </li>
-            <li>
-              <span class="option-icon"
-                ><i class="fa-solid fa-location-dot"></i></span
-              >
-              <p>Visita nuestra sucursal y adquiere tus productos.</p>
-            </li>
-          </ul>
-        </div>
-        <p class="shipping-info">
-          Realizamos envíos a toda la República Mexicana.
-        </p>
-      </div>
-      <MapCard/>
-      
+      <ContactInfo />
+      <MapCard />
     </div>
   </section>
   <section class="whatsapp-contact">
@@ -143,89 +73,6 @@ import MapCard from "../components/MapCard.astro";
     grid-template-columns: 1fr 1fr;
     gap: 30px;
   }
-  .contact-info-card {
-    background-color: white;
-    padding: 40px;
-    border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-
-  .contact-info-card h2 {
-    font-size: 2rem;
-    color: #2c3e50;
-    margin-bottom: 20px;
-  }
-
-  .purchase-options {
-    margin-top: 20px;
-  }
-
-  .purchase-options h3 {
-    font-size: 1.5rem;
-    color: #2c3e50;
-    margin-bottom: 15px;
-  }
-  .purchase-options ul {
-    list-style: none;
-    padding-left: 5px;
-  }
-  .purchase-options li {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    margin-bottom: 20px;
-    font-size: 1rem;
-    color: #495057;
-  }
-
-  .purchase-options p {
-    text-align: start;
-  }
-
-  .option-icon {
-    font-size: 1.5rem;
-    line-height: 1;
-    margin-top: -5px;
-  }
-
-  .fa-phone {
-    color: #2c3e50;
-  }
-
-  .fa-clock {
-    color: #5d8e75;
-  }
-
-  .fa-whatsapp {
-    color: #25d366;
-  }
-
-  .fa-facebook {
-    color: #1877f2;
-  }
-
-  .fa-location-dot {
-    color: #e74c3c;
-  }
-
-  .fa-store {
-    color: #e9df22;
-  }
-
-  .shipping-info {
-    font-size: 1rem;
-    font-weight: bold;
-    color: #2c3e50;
-    margin-top: 20px;
-    text-align: center;
-    padding: 15px;
-    background-color: #e2f4ea;
-    border-radius: 8px;
-  }
-
 
   .whatsapp-contact {
     padding: 50px 0;
@@ -294,12 +141,6 @@ import MapCard from "../components/MapCard.astro";
     }
     .info-item {
       flex-direction: column;
-    }
-    .purchase-options {
-      margin-top: 30px;
-    }
-    .shipping-info {
-      margin-top: 30px;
     }
   }
 </style>

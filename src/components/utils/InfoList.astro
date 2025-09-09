@@ -1,0 +1,59 @@
+---
+export type Props = {
+  msg: string;
+  href?: {
+    link: string;
+    label: string;
+  };
+  icon: string;
+  color?: string;
+};
+const { msg, href, icon, color } = Astro.props;
+const iconProps = color
+  ? { class: icon, style: { color: color } }
+  : { class: icon };
+---
+
+<li>
+  <span class="option-icon">
+    <i {...iconProps}></i>
+  </span>
+  <p>
+    {msg}
+    {
+      href && (
+        <a href={href.link} target="_blank" rel="noopener">
+          {href.label}
+        </a>
+      )
+    }
+  </p>
+</li>
+<style>
+  .option-icon {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 2rem;
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-top: -5px;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  li {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    font-size: 1rem;
+    color: #495057;
+  }
+  li p {
+    padding-left: 2rem;
+  }
+</style>

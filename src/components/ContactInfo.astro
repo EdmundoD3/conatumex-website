@@ -1,0 +1,131 @@
+---
+import InfoList, { type Props as TInfoList } from "./utils/InfoList.astro";
+
+const listDondeComprar: TInfoList[] = [
+  {
+    msg: "Realiza tu pedido por ",
+    href: {
+      link: "https://listado.mercadolibre.com.mx/_CustId_309975486",
+      label: "Mercado Libre.",
+    },
+    icon: "fa-solid fa-store",
+    color: "#e9df22",
+  },
+  {
+    msg: "Realiza tu pedido por ",
+    href: {
+      link: "https://es-la.facebook.com/genessis.conatumex",
+      label: "Facebook.",
+    },
+    icon: "fa-brands fa-facebook",
+    color: "#1877f2",
+  },
+  {
+    msg: "Realiza tu pedido por ",
+    href: {
+      link: "https://wa.me/528128927810",
+      label: "Whatsapp.",
+    },
+    icon: "fa-brands fa-whatsapp",
+    color: "#25d366",
+  },
+  {
+    msg: "Visita nuestra sucursal y adquiere tus productos.",
+    icon: "fa-solid fa-location-dot",
+    color: "#e1306c",
+  },
+];
+const listInfo: TInfoList[] = [
+  {
+    msg: "Enrique Rangel Meléndez #1830 Planta alta, Col. Valle de San Martín, 64208 Monterrey, N.L.",
+    icon: "fa-solid fa-location-dot",
+    color: "#e74c3c",
+  },{
+    msg: "Teléfono: (81) 8391-7589",
+    icon: "fa-solid fa-phone",
+    color: "#2c3e50",
+  },{
+    msg: "Horario: Lunes a Viernes de 9:00 a.m. a 2:00 p.m.",
+    icon: "fa-regular fa-clock",
+    color: "#5d8e75",
+  }
+];
+---
+
+<div class="contact-info-card">
+  <div class="purchase-options">
+    <h2>Sucursal en Monterrey</h2>
+    <ul>
+      {
+        listInfo.map(({ msg, icon, color }) => {
+          return <InfoList msg={msg} icon={icon} color={color} />;
+        })
+      }
+    </ul>
+  </div>
+  <div class="purchase-options">
+    <h2>¿Dónde comprar?</h2>
+    <ul>
+      {
+        listDondeComprar.map(({ msg: where, href, icon, color }) => {
+          return <InfoList msg={where} href={href} icon={icon} color={color} />;
+        })
+      }
+    </ul>
+  </div>
+  <p class="shipping-info">Realizamos envíos a toda la República Mexicana.</p>
+</div>
+<style>
+  .contact-info-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .contact-info-card h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+  }
+  .purchase-options {
+    margin-top: 20px;
+  }
+
+  .purchase-options h3 {
+    font-size: 1.5rem;
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  .purchase-options ul {
+    list-style: none;
+    padding-left: 5px;
+  }
+
+  .purchase-options p {
+    text-align: start;
+  }
+
+  .shipping-info {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin-top: 20px;
+    text-align: center;
+    padding: 15px;
+    background-color: #e2f4ea;
+    border-radius: 8px;
+  }
+  @media (max-width: 768px) {
+    .purchase-options {
+      margin-top: 30px;
+    }
+    .shipping-info {
+      margin-top: 30px;
+    }
+  }
+
+</style>
