@@ -1,0 +1,148 @@
+---
+type Props = {
+  id: string;
+  title: string;
+  description: string;
+  linkCompras?: { shop: string; url: string }[];
+  imgSrc: string;
+  altText: string;
+};
+const { id, title, description, linkCompras, imgSrc, altText } = Astro.props;
+const sliceLength = 120;
+function sliceDescription(description: string) {
+  if (description.length <= sliceLength) {
+    return description;
+  }
+  return description.slice(0, sliceLength) + "...";
+}
+const descriptionSliced = sliceDescription(description);
+const href = `/productos/${id}`;
+---
+
+<div class="product-card">
+  <div class="product-image-container">
+    <img src={imgSrc} alt={altText} />
+  </div>
+  <div class="product-info-container">
+    <h3 class="product-name">{title}</h3>
+    <p class="product-description">
+      {descriptionSliced}
+    </p>
+    <div class="purchase-links">
+      <a
+        href={href}
+        class="purchase-btn"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        ver mas
+      </a>
+    </div>
+    <!-- {
+      linkCompras && linkCompras.length > 0 && (
+        <div class="purchase-section">
+          <h3 class="purchase-title">Cómpralo en:</h3>
+          <div class="purchase-links">
+            {linkCompras.map((link) => (
+              <a
+                href={link.url}
+                class="purchase-btn"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {link.shop === "mercado-libre" ? "Mercado Libre" : link.shop}
+              </a>
+            ))}
+          </div>
+        </div>
+      )
+    } -->
+  </div>
+</div>
+<style>
+  .product-card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 16 / 6;
+    max-width: 600px;
+    margin: 0 auto 6rem;
+  }
+
+  .product-image-container {
+    position: relative;
+    height: 100%;
+    width: 40%;
+  }
+  .product-info-container {
+    position: relative;
+    height: 100%;
+    width: 60%;
+  }
+  .product-image-container img {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
+  }
+  .product-name {
+    font-size: 1.5rem;
+    color: var(--title);
+    margin-bottom: 1rem;
+  }
+  .product-description {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: var(--text);
+    margin-bottom: 2rem;
+  }
+  .purchase-title {
+    font-size: 1.25rem;
+    color: var(--title);
+    margin-bottom: 1rem;
+    padding-top: 1.5rem;
+  }
+  .purchase-links {
+    position: absolute;
+    right: 0;
+    bottom: 10%;
+    display: flex;
+    gap: 1rem;
+  }
+  .purchase-btn {
+    display: inline-block;
+    background-color: var(--tiffany-blue);
+    color: white;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+  }
+  .purchase-btn:hover {
+    background-color: #08a79d; /* Un tono más oscuro de tiffany-blue */
+  }
+
+  @media (min-width: 768px) {
+    .product-card {
+      grid-template-columns: 1fr 1.2fr;
+      align-items: start;
+    }
+  }
+  @media (max-width: 768px) {
+    .product-card:nth-child(odd) {
+      flex-direction: row-reverse;
+      /* background-color: lightblue; */
+      /* color: black; */
+    }
+    .product-card:nth-child(odd) .purchase-links {
+      left: 0;
+    }
+    .product-name {
+      margin-bottom: 0.6rem;
+      line-height: 1.6rem;
+    }
+  }
+</style>

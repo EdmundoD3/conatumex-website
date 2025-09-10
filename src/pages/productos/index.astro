@@ -1,9 +1,9 @@
 ---
-import Card from "../../components/Card.astro";
-import CardInfo from "../../components/CardInfo.astro";
+
 import Layout from "../../components/layout/Layout.astro";
-import ProductSimpleCard from "../../components/ProductSimpleCard.astro";
+import ProductSimpleCard from "../../components/cards/ProductSimpleCard.astro";
 import products from "../../data/products.json";
+import CatalogoCard from "../../components/cards/CatalogoCard.astro";
 const MAIN_TITLE = "Conoce nuestro catalogo";
 ---
 
@@ -14,12 +14,14 @@ const MAIN_TITLE = "Conoce nuestro catalogo";
       Descubre nuestra línea completa de productos para tu bienestar.
     </p>
     <div class="product-grid">
-      
-      {
+      {products.map((product, index) => (
+        <CatalogoCard {...product} />
+      ))}
+      <!-- {
         products.map((product, index) => (
           <ProductSimpleCard {...product} />
         ))
-      }
+      } -->
     </div>
   </section>
 </Layout>
@@ -42,7 +44,7 @@ const MAIN_TITLE = "Conoce nuestro catalogo";
   }
   .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
     gap: 30px;
     justify-content: center;
     max-width: 1200px;
@@ -55,7 +57,7 @@ const MAIN_TITLE = "Conoce nuestro catalogo";
     }
 
     .products-heading {
-      font-size: 2.2rem;
+      font-size: 2rem;
       padding: 50px 0 20px 0;
       margin-bottom: 0;
     }
