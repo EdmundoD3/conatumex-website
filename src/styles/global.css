@@ -41,12 +41,16 @@ body {
 }
 
 h1,
-h2,
-h3 {
+h2{
   /* font-family: "Bebas Neue", sans-serif; */
   /* font-family: "Poppins", sans-serif; */
   color: var(--title);
   letter-spacing: 2px;
+}
+
+h3{
+  color: var(--title);
+  letter-spacing: 1px;
 }
 
 a {
