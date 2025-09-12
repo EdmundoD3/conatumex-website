@@ -2,13 +2,14 @@
 type Props = {
   id: string;
   title: string;
+  shortDescription: string;
   description: string;
   linkCompras?: { shop: string; url: string }[];
   imgSrc: string;
   altText: string;
 };
-const { id, title, description, linkCompras, imgSrc, altText } = Astro.props;
-const sliceLength = 120;
+const { id, title, shortDescription, description, linkCompras, imgSrc, altText } = Astro.props;
+const sliceLength = 100;
 function sliceDescription(description: string) {
   if (description.length <= sliceLength) {
     return description;
@@ -26,13 +27,13 @@ const href = `/productos/${id}`;
   <div class="product-info-container">
     <h3 class="product-name">{title}</h3>
     <p class="product-description">
-      {descriptionSliced}
+      <!-- {descriptionSliced} -->
+      {shortDescription}
     </p>
     <div class="purchase-links">
       <a
         href={href}
         class="purchase-btn"
-        target="_blank"
         rel="noopener noreferrer"
       >
         ver mas
@@ -66,7 +67,7 @@ const href = `/productos/${id}`;
     height: 100%;
     aspect-ratio: 16 / 6;
     max-width: 600px;
-    margin: 0 auto 6rem;
+    margin: 0 auto 5rem;
   }
 
   .product-image-container {
@@ -88,15 +89,16 @@ const href = `/productos/${id}`;
     filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.5));
   }
   .product-name {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     color: var(--title);
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0;
   }
   .product-description {
     font-size: 0.9rem;
     line-height: 1.6;
     color: var(--text);
-    margin-bottom: 2rem;
+    margin-bottom: 1rem;
   }
   .purchase-title {
     font-size: 1.25rem;
@@ -115,14 +117,14 @@ const href = `/productos/${id}`;
     display: inline-block;
     background-color: var(--tiffany-blue);
     color: white;
-    padding: 0.75rem 1.5rem;
+    padding: 0.1rem 0.5rem;
     border-radius: 0.375rem;
     text-decoration: none;
     font-weight: 600;
     transition: background-color 0.2s ease;
   }
   .purchase-btn:hover {
-    background-color: #08a79d; /* Un tono más oscuro de tiffany-blue */
+    background-color: #08a79d;
   }
 
   @media (min-width: 768px) {
