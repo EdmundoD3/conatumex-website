@@ -1,34 +1,70 @@
 ---
-import { ViewTransitions } from 'astro:transitions';
-import '../../styles/global.css';
-import Header from '../Header.astro';
-import Footer from '../Footer.astro';
+import { ViewTransitions } from "astro:transitions";
+import "../../styles/global.css";
+import Header from "../Header.astro";
+import Footer from "../Footer.astro";
+import BaseHead, { type Props as BaseHeadProps } from "../base/BaseHead.astro";
+import { MAIN_URL, MAIN_NAME, telephones, email, listOfSocialLinks } from "../../constants/info";
+import type { TJsonLd } from "../../types/jsonLd";
 
-interface Props {
-	title: string;
-}
+interface Props extends BaseHeadProps {}
 
-const { title } = Astro.props;
+const { jsonLd, description,...headProps } = Astro.props;
+
+const descriptionDefault = "Pomada para los dolores, suplementos y mas"
+
+const defaultJsonLd:TJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": MAIN_NAME,
+  "url": MAIN_URL,
+  "logo": `${MAIN_URL}/assets/big-logo.jpg`,
+  "description": description ?? descriptionDefault,
+  "telephone": String(telephones.info.num),
+  "email": email.info,
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Monterrey",
+    "addressRegion": "Nuevo León",
+    "addressCountry": "MX"
+  },
+  "areaServed": [
+    { "@type": "Country", "name": "México" },
+    { "@type": "Place", "name": "Monterrey, Nuevo León, México" }
+  ],
+  "sameAs": listOfSocialLinks
+};
+const finalJsonLd:TJsonLd = jsonLd === undefined ? defaultJsonLd : jsonLd;
+
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>{title}</title>
-	<link rel="icon" type="image/svg+xml" href="/favicon.ico" />
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="icon" type="image/svg+xml" href="/assets/img/icons/iconConatumex.ico" />
-	<ViewTransitions />
-</head>
-<body>
-	<Header />
-	<slot />
-	<Footer />
-</body>
+  <BaseHead {...headProps} jsonLd={finalJsonLd} />
+    <!-- Fuentes -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Iconos -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/assets/img/icons/iconConatumex.ico"
+    />
+    <ViewTransitions />
+  </BaseHead>
+  <body>
+    <Header />
+    <slot />
+    <Footer />
+  </body>
 </html>
