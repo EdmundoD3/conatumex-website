@@ -2,9 +2,10 @@
 import ContactInfo from "../components/ContactInfo.astro";
 import Layout from "../components/layout/Layout.astro";
 import MapCard from "../components/cards/MapCard.astro";
+import { contactJsonLd } from "../seo/schema/jsonLd";
 ---
 
-<Layout title="Ubicación">
+<Layout title="Ubicación" jsonLd={contactJsonLd}>
   <section class="contact-header-section">
     <div class="contact-header">
       <h2>Contacto</h2>

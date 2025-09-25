@@ -1,27 +1,20 @@
 ---
-
 import Layout from "../../components/layout/Layout.astro";
-import ProductSimpleCard from "../../components/cards/ProductSimpleCard.astro";
 import products from "../../data/products.json";
 import CatalogoCard from "../../components/cards/CatalogoCard.astro";
+import { productosJsonLd } from "../../seo/schema/jsonLd";
+
 const MAIN_TITLE = "Conoce nuestro catalogo";
 ---
 
-<Layout title={MAIN_TITLE}>
+<Layout title={MAIN_TITLE} jsonLd={productosJsonLd}>
   <section class="products-section">
     <h2 class="products-heading">Nuestros productos</h2>
     <p class="products-subheading">
       Descubre nuestra línea completa de productos para tu bienestar.
     </p>
     <div class="product-grid">
-      {products.map((product, index) => (
-        <CatalogoCard {...product} />
-      ))}
-      <!-- {
-        products.map((product, index) => (
-          <ProductSimpleCard {...product} />
-        ))
-      } -->
+      {products.map((product, index) => <CatalogoCard {...product} />)}
     </div>
   </section>
 </Layout>

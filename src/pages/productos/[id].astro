@@ -1,6 +1,8 @@
 ---
 import Layout from "../../components/layout/Layout.astro";
+import { MAIN_URL } from "../../constants/info";
 import products from "../../data/products.json";
+import type { TJsonLd } from "../../types/TJsonLd";
 
 export async function getStaticPaths() {
   return products.map((product) => ({
@@ -10,9 +12,29 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props;
+
+const jsonLd:TJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: product.title,
+  image: `${MAIN_URL}${product.imgSrc}`,
+  description: product.description,
+  brand: {
+    "@type": "Brand",
+    "name": "Tu Marca",
+  },
+  offers: product.linkCompras?.map((link) => ({
+    "@type": "Offer",
+    url: link.url,
+    availability: "https://schema.org/InStock",
+    priceCurrency: "MXN",
+    // si no tienes precios en el JSON, puedes dejar esto vacío o quitarlo
+    // price: "150"
+  })),
+};
 ---
 
-<Layout title={product.title}>
+<Layout title={product.title} jsonLd={jsonLd}>
   <section class="product-page">
     <div class="product-image-container">
       <img src={product.imgSrc} alt={product.altText} />
