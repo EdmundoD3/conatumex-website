@@ -6,67 +6,12 @@ import { telephones } from "../constants/info";
 import { address } from "../constants/info";
 import type { TJsonLd } from "../types/TJsonLd";
 import {logoChico} from "../constants/logoUrl"
-
-const hero={
-  title:"¡Bienvenidos a nuestra tienda!",
-  description:"En Génesis del Norte, Conatumex, tenemos una amplia experiencia en la comercialización de productos naturistas.",
-  imgSrc:"assets/img/icons/hero.jpg",
-  btn:{
-    text: "Ver productos",
-    href: "/productos",
-  }
-};
-export const homeJsonLd:TJsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Organization",
-      "@id": `${MAIN_URL}#organization`,
-      "name": "Génesis del Norte, Conatumex",
-      "url": MAIN_URL,
-      "logo": logoChico,
-      "sameAs": [
-        "https://es-la.facebook.com/genessis.conatumex",
-        "https://wa.me/528128927810"
-      ]
-    },
-    {
-      "@type": "WebSite",
-      "url": MAIN_URL,
-      "name": "Génesis del Norte, Conatumex",
-      "publisher": {
-        "@id": `${MAIN_URL}#organization`
-      }
-    },
-    {
-      "@type": "Store",
-      "name": "Sucursal Monterrey - Génesis del Norte",
-      "image": `${MAIN_URL}/${hero.imgSrc}`,
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": address.street,
-        "addressLocality": address.locality,
-        "addressRegion": address.region,
-        "postalCode": address.postalCode,
-        "addressCountry": address.country
-      },
-      "telephone": `(81) ${telephones.local.num}`,
-      "openingHours": address.openingHours,
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": address.geoLocation.latitude,
-        "longitude": address.geoLocation.longitude
-      },
-      "hasMap": address.map
-    }
-  ]
-};
-
+import { heroHome, homeJsonLd } from "../constants/pages/home";
 
 ---
 
 <Layout title="Génesis del Norte, Conatumex" jsonLd={homeJsonLd}>
 	<main>
-		<Hero {...hero}></Hero>
+		<Hero {...heroHome}></Hero>
 	</main>
 </Layout>

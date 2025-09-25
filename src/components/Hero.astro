@@ -1,26 +1,38 @@
 ---
+import { Image } from "astro:assets";
+import { heroImg } from "../constants/images";
+
 export type Props = {
   title: string;
   description: string;
-  imgSrc: string;
+  img: ImageMetadata;
+  alt?: string;
   btn?: {
     text: string;
     href: string;
   };
 };
+
 const {
   title,
   description,
-  imgSrc = "assets/img/icons/hero.jpg",
+  img: imgSrc = heroImg.home.img,
   btn,
+  alt
 } = Astro.props;
 ---
 
-<section
-  class="hero-section"
-  style=`background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
-      url("${imgSrc}");`
->
+<section class="hero-section">
+  <div class="hero-bg">
+    <Image 
+      src={imgSrc} 
+      alt={alt??title} 
+      priority 
+      class="hero-img"
+      sizes="100vw"
+    />
+    <div class="overlay"></div>
+  </div>
   <div class="hero-content">
     <h1>{title}</h1>
     <p>{description}</p>
@@ -36,13 +48,28 @@ const {
 
 <style>
   .hero-section {
-    background-size: cover;
-    background-position: center;
+    position: relative;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .hero-img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6));
   }
   .hero-content h1 {
     font-size: 4em;

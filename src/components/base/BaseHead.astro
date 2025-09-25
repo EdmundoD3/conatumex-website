@@ -40,6 +40,29 @@ const {
 
   jsonLd,
 } = Astro.props;
+if (title.length > 60) {
+  console.log({
+    msg: "🚨 ¡ADVERTENCIA SEO! El Título es demasiado largo. Máximo recomendado: 60 caracteres.",
+    title,
+    length: title.length
+  });
+}
+if (description) {
+  if (description.length > 160) {
+    console.log({
+      msg: "🚨 ¡ADVERTENCIA SEO! La Descripción es demasiado larga. Máximo recomendado: 160 caracteres.",
+      description,
+      length: description.length
+    });
+  }
+  if (description.length < 50) {
+    console.log({
+      msg: "⚠️ ¡ADVERTENCIA SEO! La Descripción es muy corta. Se recomienda al menos 50 caracteres para un buen snippet.",
+      description,
+      length: description.length
+    });
+  }
+}
 ---
 
 <head>
