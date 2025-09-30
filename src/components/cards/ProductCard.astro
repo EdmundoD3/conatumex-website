@@ -1,14 +1,28 @@
 ---
+import { Image } from "astro:assets";
+import type { TProduct } from "../../types/TProduct";
+
 /* Plantilla inspirada de ProductCard de https://freefrontend.com/css-product-cards/ */
+type Props = {
+  product: TProduct;
+};
+const { product } = Astro.props;
 ---
 
 <div class="wrapper">
   <div class="container">
-    <div class="top"></div>
+    <div class="top">
+      <Image
+        src={product.imgData}
+        alt={product.altText ?? product.title}
+        priority
+        class="hero-img"
+      />
+    </div>
     <div class="bottom">
       <div class="left">
         <div class="details">
-          <h1>Chair</h1>
+          <h2>{product.name ?? product.title}</h2>
           <p>£250</p>
         </div>
         <div class="buy pointer">
@@ -18,7 +32,7 @@
       <div class="right">
         <div class="done pointer"><i class="material-icons">&#x2714;</i></div>
         <div class="details">
-          <h1>Chair</h1>
+          <h2>{product.name ?? product.title}</h2>
           <p>Added to your cart</p>
         </div>
         <div class="remove pointer"><i class="material-icons">&#x2716;</i></div>
@@ -125,13 +139,13 @@
     float: left;
   }
   .wrapper .container .bottom .left .details {
-    flex:3;
+    flex: 3;
     padding: 20px;
     float: left;
     width: calc(70% - 40px);
   }
   .wrapper .container .bottom .left .buy {
-    flex:1;
+    flex: 1;
     float: right;
     width: calc(30% - 2px);
     height: 100%;
@@ -147,7 +161,6 @@
   }
   .wrapper .container .bottom .left .buy:hover {
     background: #a6cdde;
-
   }
   .wrapper .container .bottom .left .buy:hover i {
     transform: scale(1.1);
@@ -165,13 +178,13 @@
     overflow: hidden;
   }
   .wrapper .container .bottom .right .details {
-    flex:3;
+    flex: 3;
     padding: 20px;
     float: right;
     width: calc(70% - 40px);
   }
   .wrapper .container .bottom .right .done {
-    flex:1;
+    flex: 1;
     width: calc(30% - 2px);
     float: left;
     transition: transform 0.5s;
@@ -184,7 +197,7 @@
     color: white;
   }
   .wrapper .container .bottom .right .remove {
-    flex:0.25;
+    flex: 0.25;
     width: calc(30% - 1px);
     clear: both;
     border-right: solid thin rgba(255, 255, 255, 0.3);
@@ -193,7 +206,6 @@
     transition:
       transform 0.5s,
       background 0.5s;
-    
   }
   .wrapper .container .bottom .right .remove:hover {
     background: #9b2847;

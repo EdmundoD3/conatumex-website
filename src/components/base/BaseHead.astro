@@ -40,29 +40,51 @@ const {
 
   jsonLd,
 } = Astro.props;
+// 🚨 Críticos
+if (!canonical) {
+  console.log(`🚨 ¡ADVERTENCIA SEO CRÍTICA! Falta el canonical en "${title}".`);
+}
+
 if (title.length > 60) {
   console.log({
-    msg: "🚨 ¡ADVERTENCIA SEO! El Título es demasiado largo. Máximo recomendado: 60 caracteres.",
+    msg: "🚨 ¡ADVERTENCIA SEO CRÍTICA! El Título es demasiado largo. Máximo recomendado: 60 caracteres.",
     title,
-    length: title.length
+    length: title.length,
   });
 }
+
+if (!description) {
+  console.log(`🚨 ¡ADVERTENCIA SEO CRÍTICA! No hay descripción en "${title}".`);
+}
+
+if (!ogImage) {
+  console.log(`🚨 ¡ADVERTENCIA SEO CRÍTICA! No hay og:image en "${title}".`);
+}
+
+// ⚠️ Importantes
 if (description) {
   if (description.length > 160) {
     console.log({
-      msg: "🚨 ¡ADVERTENCIA SEO! La Descripción es demasiado larga. Máximo recomendado: 160 caracteres.",
+      msg: "⚠️ Descripción demasiado larga. Máximo recomendado: 160 caracteres.",
       description,
-      length: description.length
+      length: description.length,
     });
   }
   if (description.length < 50) {
     console.log({
-      msg: "⚠️ ¡ADVERTENCIA SEO! La Descripción es muy corta. Se recomienda al menos 50 caracteres para un buen snippet.",
+      msg: "⚠️ Descripción muy corta. Se recomienda mínimo 50 caracteres.",
       description,
-      length: description.length
+      length: description.length,
     });
   }
 }
+
+if (!ogUrl) console.log(`⚠️ Falta og:url en "${title}"`);
+if (!jsonLd) console.log(`⚠️ No hay JSON-LD en "${title}"`);
+
+// ℹ️ Opcionales
+if (!author) console.log(`ℹ️ No se especificó author en "${title}"`);
+if (!keywords) console.log(`ℹ️ No se especificaron keywords en "${title}"`);
 ---
 
 <head>

@@ -1,15 +1,13 @@
 ---
+import productService from "../../components/db/productService";
 import Layout from "../../components/layout/Layout.astro";
 import { MAIN_URL } from "../../constants/info";
-import products from "../../data/products.json";
 import type { TJsonLd } from "../../types/TJsonLd";
 
 export async function getStaticPaths() {
-  return products.map((product) => ({
-    params: { id: product.id }, // Genera /products/1, /products/2...
-    props: { product }, // Pasa el objeto como props
-  }));
+    return productService.getStaticPaths();
 }
+
 
 const { product } = Astro.props;
 

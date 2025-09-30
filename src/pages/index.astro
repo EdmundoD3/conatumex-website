@@ -1,17 +1,29 @@
 ---
 import Hero from "../components/Hero.astro";
 import Layout from "../components/layout/Layout.astro";
-import { MAIN_URL } from "../constants/info";
-import { telephones } from "../constants/info";
-import { address } from "../constants/info";
-import type { TJsonLd } from "../types/TJsonLd";
-import {logoChico} from "../constants/logoUrl"
 import { heroHome, homeJsonLd } from "../constants/pages/home";
+import products from '../data/products.json';
+import ProductCard from "../components/cards/ProductCard.astro";
+import Button from "../components/utils/Button.astro";
+import productService from "../components/db/productService";
 
+
+const featuredProducts = productService.getByIds(["pomada-plus","jarabe-conisis","mascarilla-egipcia","balsamo-real",]);
 ---
 
 <Layout title="Génesis del Norte, Conatumex" jsonLd={homeJsonLd}>
 	<main>
 		<Hero {...heroHome}></Hero>
+		<section class="container mx-auto px-4 py-12">
+			<h2 class="text-3xl font-bold text-center mb-8">Nuestros Productos Destacados</h2>
+			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+				{featuredProducts.map(product => (
+					<ProductCard product={product} />
+				))}
+			</div>
+			<div class="text-center mt-12">
+				<Button href="/productos" text="Ver catálogo completo" />
+			</div>
+		</section>
 	</main>
 </Layout>

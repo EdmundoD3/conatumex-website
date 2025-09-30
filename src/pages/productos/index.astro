@@ -1,10 +1,11 @@
 ---
 import Layout from "../../components/layout/Layout.astro";
-import products from "../../data/products.json";
 import CatalogoCard from "../../components/cards/CatalogoCard.astro";
 import { productosJsonLd } from "../../seo/schema/jsonLd";
+import productService from "../../components/db/productService";
 
 const MAIN_TITLE = "Conoce nuestro catalogo";
+const products = productService.getAll();
 ---
 
 <Layout title={MAIN_TITLE} jsonLd={productosJsonLd}>

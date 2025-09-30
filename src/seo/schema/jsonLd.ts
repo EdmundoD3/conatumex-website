@@ -1,7 +1,8 @@
 // schema/services.ts
+import productService from "../../components/db/productService";
 import { MAIN_NAME, MAIN_URL, telephones, email, listOfSocialLinks } from "../../constants/info";
-import products from "../../data/products.json";
 import type { StoreServiceJsonLd, TJsonLd } from "../../types/TJsonLd";
+const products = productService.getAll();
 
 export const defaultJsonLd: StoreServiceJsonLd = {
   "@context": "https://schema.org",
