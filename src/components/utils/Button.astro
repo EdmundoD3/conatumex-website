@@ -7,6 +7,33 @@ interface Props {
 
 const { href, text, className } = Astro.props;
 ---
-<a href={href} class:list={["bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded", className]}>
+
+<a href={href} class:list={["btn-primary", className]}>
   {text}
 </a>
+
+<style>
+  /* Definición del estilo semántico para el botón */
+  .btn-primary {
+    /* Imitando text-white, font-bold, py-2, px-4, rounded */
+    display: inline-block;
+    color: white; /* text-white */
+    background-color: var(
+      --celestial-blue
+    ); /* Color base (simulando blue-500) */
+    padding: 0.5rem 1rem; /* py-2 (0.5rem) px-4 (1rem) */
+    border-radius: 0.25rem; /* rounded */
+    font-weight: 700; /* font-bold */
+    text-align: center;
+    transition: background-color 0.3s ease;
+    text-decoration: none; /* Asegurar que el link no tenga subrayado */
+  }
+
+  /* Imitando hover:bg-blue-700 */
+  .btn-primary:hover {
+    /* Elegimos un color ligeramente más oscuro para el hover */
+    background-color: #3b7fa8; /* Un tono más oscuro de --celestial-blue */
+  }
+
+  /* Nota: Usamos las variables CSS que definiste en tu CSS base (ej: --celestial-blue) */
+</style>

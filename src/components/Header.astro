@@ -1,94 +1,109 @@
 ---
+import { Image } from "astro:assets";
+import { logo } from "../types/images";
+
 type TLink = {
   name: string;
   url: string;
 };
 const links: TLink[] = [
   { name: "Home", url: "/" },
-  { name: "Nosotros", url: "/nosotros" },
   { name: "Productos", url: "/productos" },
   { name: "Contacto", url: "/contacto" },
 ];
-const logoImg = "/assets/img/CONATUMEX (Chico).webp"
 ---
 
 <header class="main-header">
-  <div class="container">
-    <a href="/" class="logo">
-      <img
-        src={logoImg}
-        alt="Logo Conatumex"
-        class="logo-img"
-      />
-    </a>
-    <nav class="nav" id="nav">
-      <ul class="nav-list">
-        {
-          links.map((link) => (
-            <li>
-              <a href={link.url} class="nav-link">
-                {link.name}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-    <button class="menu-toggle" id="menu-toggle">
-      <span class="menu-bar-1"></span>
-      <span class="menu-bar-2"></span>
-      <span class="menu-bar-3"></span>
-    </button>
-  </div>
+  <a href="/" class="logo" aria-label="Ir a inicio">
+    <Image src={logo.cuadrado} alt="Logo Conatumex" class="logo-img" />
+  </a>
+
+  <nav class="nav" id="nav" role="navigation" aria-label="Menú principal">
+    <ul class="nav-list">
+      {
+        links.map((link) => (
+          <li>
+            <a href={link.url} class="nav-link">
+              {link.name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+
+  <button
+    class="menu-toggle"
+    id="menu-toggle"
+    aria-label="Abrir o cerrar menú"
+    aria-expanded="false"
+    aria-controls="nav"
+  >
+    <span class="menu-bar"></span>
+    <span class="menu-bar"></span>
+    <span class="menu-bar"></span>
+  </button>
 </header>
 
 <style>
   .main-header {
-    background-color: #e4f5ebb4;
-    color: var(--text-white);
-    padding: 20px 0;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000;
-  }
-  .main-header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 0.7rem 1.5rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    z-index: 1000;
+    transition: background 0.3s ease;
+  }
+
+  .logo {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
   }
 
   .logo-img {
-    width: 70px;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
   }
 
   .nav-list {
     list-style: none;
     display: flex;
-    gap: 20px;
+    gap: 1.5rem;
   }
+
   .nav-link {
     color: var(--title);
-    font-weight: bold;
+    font-weight: 600;
     text-decoration: none;
     position: relative;
+    padding: 0.2rem 0;
     transition: color 0.3s ease;
   }
 
   .nav-link::after {
     content: "";
     position: absolute;
-    bottom: -5px;
+    bottom: -3px;
     left: 0;
     width: 0;
     height: 2px;
-    background-color: var(--pistachio);
+    background: var(--pistachio);
     transition: width 0.3s ease;
   }
 
   .nav-link:hover {
     color: var(--pistachio);
   }
+
   .nav-link:hover::after {
     width: 100%;
   }
@@ -97,55 +112,67 @@ const logoImg = "/assets/img/CONATUMEX (Chico).webp"
     display: none;
     flex-direction: column;
     justify-content: space-between;
-    width: 30px;
-    height: 20px;
+    width: 28px;
+    height: 22px;
     background: transparent;
     border: none;
     cursor: pointer;
+    z-index: 1100;
   }
-  .menu-toggle span {
+
+  .menu-bar {
     display: block;
     width: 100%;
-    height: 2px;
-    background-color: var(--title);
-    transition: transform 0.3s;
+    height: 3px;
+    background: var(--title);
+    border-radius: 2px;
+    transition:
+      transform 0.3s,
+      opacity 0.3s;
   }
 
-      /* Estilos para la animación de la X */
-    .menu-toggle.active .menu-bar-1 {
-      transform: translateY(9px) rotate(45deg);
-    }
-    .menu-toggle.active .menu-bar-2 {
-      opacity: 0;
-    }
-    .menu-toggle.active .menu-bar-3 {
-      transform: translateY(-9px) rotate(-45deg);
-    }
-
+  /* Animación de la X */
+  .menu-toggle.active .menu-bar:nth-child(1) {
+    transform: translateY(9px) rotate(45deg);
+  }
+  .menu-toggle.active .menu-bar:nth-child(2) {
+    opacity: 0;
+  }
+  .menu-toggle.active .menu-bar:nth-child(3) {
+    transform: translateY(-9px) rotate(-45deg);
+  }
 
   @media (max-width: 768px) {
     .nav {
-      display: none;
-      width: 100%;
-      text-align: center;
-      background-color: var(--background);
       position: absolute;
       top: 100%;
       left: 0;
-      padding: 20px 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(8px);
+      text-align: center;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
     }
+
     .nav.active {
-      display: block;
+      max-height: 300px; /* lo suficiente para mostrar todo el menú */
     }
+
     .nav-list {
       flex-direction: column;
-      gap: 10px;
+      gap: 1rem;
+      padding: 1rem 0;
     }
+
     .menu-toggle {
       display: flex;
     }
-    .logo-img {
-      width: 50px;
+
+    .logo {
+      width: 60px;
+      height: 60px;
     }
   }
 </style>
@@ -154,12 +181,12 @@ const logoImg = "/assets/img/CONATUMEX (Chico).webp"
   const setupMenu = () => {
     const menuToggle = document.getElementById("menu-toggle");
     const nav = document.getElementById("nav");
-    
 
     if (menuToggle && nav) {
       menuToggle.addEventListener("click", () => {
-        nav.classList.toggle("active");
+        const isActive = nav.classList.toggle("active");
         menuToggle.classList.toggle("active");
+        menuToggle.setAttribute("aria-expanded", isActive);
       });
 
       const navLinks = nav.querySelectorAll(".nav-link");
@@ -167,15 +194,14 @@ const logoImg = "/assets/img/CONATUMEX (Chico).webp"
         link.addEventListener("click", () => {
           if (nav.classList.contains("active")) {
             nav.classList.remove("active");
+            menuToggle.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", false);
           }
         });
       });
     }
   };
 
-  // 1. Ejecutar al cargar la página por primera vez.
   document.addEventListener("DOMContentLoaded", setupMenu);
-
-  // 2. Ejecutar cada vez que Astro cambia de página (transición de vista).
   document.addEventListener("astro:after-swap", setupMenu);
 </script>

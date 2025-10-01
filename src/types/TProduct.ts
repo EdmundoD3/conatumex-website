@@ -5,6 +5,7 @@ export type TProductData = {
   id: string;
   title: string;
   name: string;
+  price?: number;
   shortDescription: string;
   description: string;
   imgSrc: string;

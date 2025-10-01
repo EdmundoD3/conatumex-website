@@ -2,28 +2,72 @@
 import Hero from "../components/Hero.astro";
 import Layout from "../components/layout/Layout.astro";
 import { heroHome, homeJsonLd } from "../constants/pages/home";
-import products from '../data/products.json';
 import ProductCard from "../components/cards/ProductCard.astro";
 import Button from "../components/utils/Button.astro";
 import productService from "../components/db/productService";
 
-
-const featuredProducts = productService.getByIds(["pomada-plus","jarabe-conisis","mascarilla-egipcia","balsamo-real",]);
+const featuredProducts = productService.getByIds([
+  "pomada-plus",
+  "jarabe-conisis",
+  "mascarilla-egipcia",
+  "balsamo-real",
+]);
 ---
 
 <Layout title="Génesis del Norte, Conatumex" jsonLd={homeJsonLd}>
-	<main>
-		<Hero {...heroHome}></Hero>
-		<section class="container mx-auto px-4 py-12">
-			<h2 class="text-3xl font-bold text-center mb-8">Nuestros Productos Destacados</h2>
-			<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-				{featuredProducts.map(product => (
-					<ProductCard product={product} />
-				))}
-			</div>
-			<div class="text-center mt-12">
-				<Button href="/productos" text="Ver catálogo completo" />
-			</div>
-		</section>
-	</main>
+  <Hero {...heroHome} />
+  <main>
+    <section class="container">
+      <h2 class="">Nuestros Productos Destacados</h2>
+      <div class="grid">
+        {featuredProducts.map((product) => <ProductCard product={product} />)}
+      </div>
+      <div class="">
+        <Button href="/productos" text="Ver catálogo completo" />
+      </div>
+    </section>
+  </main>
 </Layout>
+<style>
+  /* Si ya tienes .section en tu CSS base, usa esa clase en el section tag
+        y elimina el padding de aquí.
+    */
+  .product-section {
+    padding: 80px 0; /* Mantiene tu estilo de .section */
+  }
+
+  .section-title-custom {
+    /* Aquí puedes definir estilos específicos, por ahora solo centrado y margen. */
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  /* Estilo de la cuadrícula: 
+       Simula grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 
+    */
+  .featured-products__grid {
+    display: grid;
+    /* Por defecto: 1 columna y un espacio de 2rem (32px, similar a gap-8) */
+    grid-template-columns: repeat(1, 1fr);
+    gap: 2rem;
+  }
+
+  /* Breakpoint SM (ej. 640px) -> sm:grid-cols-2 */
+  @media (min-width: 640px) {
+    .featured-products__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* Breakpoint LG (ej. 1024px) -> lg:grid-cols-4 */
+  @media (min-width: 1024px) {
+    .featured-products__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .section-button-wrapper {
+    text-align: center; /* Simula text-center */
+    margin-top: 3rem; /* Simula mt-12 (mt-12 es 3rem o 48px) */
+  }
+</style>
